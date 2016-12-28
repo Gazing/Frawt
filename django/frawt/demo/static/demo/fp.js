@@ -5,8 +5,8 @@ function search_click() {
 	var res = document.getElementById("result_form");
 	var isOpen = form.classList.contains('slide-in');
     form.setAttribute('class', isOpen ? 'slide-out form_box' : 'slide-in form_box');
-	var outmargin = -117+form.clientHeight;
-	res.style.marginTop = isOpen ? '-117px' : outmargin+'px';
+	var outmargin = -107+form.clientHeight;
+	res.style.marginTop = isOpen ? '-107px' : outmargin+'px';
 	
 }
 
