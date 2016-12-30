@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='api_index'),
-    url(r'^rooms/current', views.find_current, name='current_api'),
     url(r'^time$', views.get_server_time, name='api_time'),
+    url(r'^rooms/available', views.find_available, name='api_available'),
 ]

@@ -11,7 +11,15 @@ function search_click() {
 }
 
 function on_time_change() {
-	console.log("Changed");
+	$.ajax({
+		url: "/api/rooms/available",
+		headers: {"start": $("start-time").val(), "end":$("end-time").val()},
+		success: function(result) {
+			for (var i = 0; i < result.length; i++) {
+				console.log(result[i]["room_name"]);
+			}
+		}
+	});
 }
 
 $(document).ready(function(){
