@@ -10,7 +10,8 @@ $.ajax({
 });
 
 $.ajax({
-	url: "/api/rooms/current",
+	url: "/api/rooms/available",
+	headers: {"start": "12:00", "end":"15:00"},
 	success: function(result) {
 		$("body").append("<p>");
 		for (i = 0; i < result.length; i++) {
