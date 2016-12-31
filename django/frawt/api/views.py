@@ -37,10 +37,13 @@ def find_available(request):
         return find_current(request)
     start = request.META["HTTP_START"] if (len(request.META["HTTP_START"]) > 4) else "0"+request.META["HTTP_START"]
     end = request.META["HTTP_END"] if (len(request.META["HTTP_END"]) > 4) else "0"+request.META["HTTP_END"]
+    print(start)
+    print(end)
     if (not is_time(start) or not is_time(end) or request.method == "POST"
         or start >= end):
         serializer = MessageSerializer(ApiMessage("Invalid API arguments", "400"))
         return JSONResponse(serializer.data, status=400)
+    
     res = gen_ava_query(calendar.day_name[date.today().weekday()], start.split(":")[0],
                         end.split(":")[0])
     rooms = [ts("", "", "", room[0], False) for room in res]
