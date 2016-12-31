@@ -7,12 +7,13 @@ from .serializers import *
 import datetime
 from datetime import date
 import calendar
+import os
 
-database = dbm("???", "???", "???", "???")
+database = dbm("/")
 
 def index(request):
-    return HttpResponse("Hello welcome to the API index. At some point I will release and document the API calls so that"
-                        " you can use it too.")
+    return HttpResponse("Hello welcome to the API index. At some point I will release and document the API calls so"
+                        " that you can use it too.")
 
 def find_current(request):
     current = datetime.datetime.now()
@@ -25,9 +26,6 @@ def find_current(request):
     serializer = RoomSerializer(rooms, many=True)
     print("Sending JSON response to "+request.META["REMOTE_ADDR"])
     return JSONResponse(serializer.data)
-
-def not_found(request):
-    return HttpResponse("401: NOT FOUND")
 
 def get_server_time(request):
     return HttpResponse(datetime.datetime.now().strftime("%H:%M"))
