@@ -8,7 +8,7 @@ import datetime
 from datetime import date
 import calendar
 
-database = dbm("root", "63577477", "127.0.0.1", "roomfinder")
+database = dbm("???", "???", "???", "???")
 
 def index(request):
     return HttpResponse("Hello welcome to the API index. At some point I will release and document the API calls so that"
