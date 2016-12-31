@@ -7,12 +7,13 @@ from .serializers import *
 import datetime
 from datetime import date
 import calendar
+import os
 
-database = dbm("???", "???", "???", "???")
+database = dbm("/")
 
 def index(request):
-    return HttpResponse("Hello welcome to the API index. At some point I will release and document the API calls so that"
-                        " you can use it too.")
+    return HttpResponse("Hello welcome to the API index. At some point I will release and document the API calls so"
+                        " that you can use it too.")
 
 def find_current(request):
     current = datetime.datetime.now()
@@ -26,9 +27,6 @@ def find_current(request):
     print("Sending JSON response to "+request.META["REMOTE_ADDR"])
     return JSONResponse(serializer.data)
 
-def not_found(request):
-    return HttpResponse("401: NOT FOUND")
-
 def get_server_time(request):
     return HttpResponse(datetime.datetime.now().strftime("%H:%M"))
 
@@ -37,10 +35,13 @@ def find_available(request):
         return find_current(request)
     start = request.META["HTTP_START"] if (len(request.META["HTTP_START"]) > 4) else "0"+request.META["HTTP_START"]
     end = request.META["HTTP_END"] if (len(request.META["HTTP_END"]) > 4) else "0"+request.META["HTTP_END"]
+    print(start)
+    print(end)
     if (not is_time(start) or not is_time(end) or request.method == "POST"
         or start >= end):
         serializer = MessageSerializer(ApiMessage("Invalid API arguments", "400"))
         return JSONResponse(serializer.data, status=400)
+    
     res = gen_ava_query(calendar.day_name[date.today().weekday()], start.split(":")[0],
                         end.split(":")[0])
     rooms = [ts("", "", "", room[0], False) for room in res]
@@ -50,9 +51,12 @@ def find_available(request):
 def gen_ava_query(day, start, end):
     res = database.selectOp("select * from (select distinct room_name from time_slots) as t1 natural left join"
                             " (select distinct room_name from time_slots where date = %s"
-                            " and start >= %s and end <= %s) as t2 WHERE t2.room_name is NULL;",
+                            " and ((start <= %s and end >= %s) or (start <= %s and end >= %s))) as t2 WHERE"
+                            " t2.room_name is NULL;",
                             (day,
                              str(start)+":00",
+                             str(start)+":00",
+                             str(end)+":00",
                              str(end)+":00"))
     return res
 

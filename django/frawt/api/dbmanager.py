@@ -1,11 +1,19 @@
 import pymysql as mysql
 from sqlalchemy import create_engine, exc
+import os
 from .timeslot import TimeSlot as ts
 
 CONNECTION = "mysql://{}:{}@{}/{}"
+CONFIG_NAME = "mysql.config"
 
 class DatabaseManager():
-    def __init__(self, uname, password, host, dbname):
+    def __init__(self, path):
+        file_path = os.path.join(path, CONFIG_NAME)
+        file = open(file_path)
+        uname = file.readline().strip()
+        password = file.readline().strip()
+        host = file.readline().strip()
+        dbname = file.readline().strip()
         self.engine = create_engine(str.format(CONNECTION, uname, password, host, dbname), echo=True)
 
     def add_schedule(self, schedule):
