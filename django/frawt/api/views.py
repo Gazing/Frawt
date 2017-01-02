@@ -51,12 +51,12 @@ def find_available(request):
 def gen_ava_query(day, start, end):
     res = database.selectOp("select * from (select distinct room_name from time_slots) as t1 natural left join"
                             " (select distinct room_name from time_slots where date = %s"
-                            " and ((start <= %s and end >= %s) or (start <= %s and end >= %s))) as t2 WHERE"
+                            " and ((start >= %s and start < %s) or (end > %s and end <= %s))) as t2 WHERE"
                             " t2.room_name is NULL;",
                             (day,
                              str(start)+":00",
-                             str(start)+":00",
                              str(end)+":00",
+                             str(start)+":00",
                              str(end)+":00"))
     return res
 

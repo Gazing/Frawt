@@ -68,6 +68,9 @@ $(document).ready(function(){
 		success: function(result) {
 			var start = result.split(":")[0];
 			var end = parseInt(start)+1;
+			if (end == 24) {
+				end = "00";
+			}
 			$("#start-time").val(start+":00");
 			$("#end-time").val(end+":00");
 			clearTable();
