@@ -54,7 +54,7 @@ def getRawHtml():
 
 def getTimeSlots():
     html = getRawHtml()
-    s = filterSemester(html, "F")
+    s = filterSemester(html, "S")
     slots = parseFromText(s)
     return slots
 
@@ -63,15 +63,8 @@ def add_all_ts(timeSlots):
         dbmanager.add_schedule(slot)
 
 if __name__ == '__main__':
-    if (len(sys.argv) != 5):
-        print("Invalid parameters: usage: xxx.py username password dbname host")
-    else:
         try:
-            uname = sys.argv[1]
-            password = sys.argv[2]
-            dbname = sys.argv[3]
-            host = sys.argv[4]
-            dbmanager = dbm(uname, password, host, dbname)
+            dbmanager = dbm("/")
             # file = open("test.html")
             # slots = parseFromText(filterSemester(file.read(), "F"))
             slots = getTimeSlots()
