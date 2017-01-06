@@ -335,3 +335,21 @@ nav ul li {
 		padding-left: 41px;
 	}
 }
+
+@media (min-width: 541px) and (max-width: 767px) {
+	.footer_grid {
+		width: 50%;
+		display: table;
+		margin: 0 auto;
+		padding: 0 auto;
+	}
+}
+
+@media (min-width: 0px) and (max-width: 540px) {
+	.footer_grid {
+		width: 80%;
+		display: table;
+		margin: 0 auto;
+		padding: 0 auto;
+	}
+}
