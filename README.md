@@ -13,6 +13,7 @@ Setting up
   - Django
   - DjangoRestFramework
   - Python 3.5.2 (3.5 only)
+  - MySQL
   
   Use PIP to install everything and it should be good to go
   
