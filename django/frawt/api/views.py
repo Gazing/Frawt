@@ -12,8 +12,7 @@ import os
 database = dbm("/")
 
 def index(request):
-    return HttpResponse("Hello welcome to the API index. At some point I will release and document the API calls so"
-                        " that you can use it too.")
+    return HttpResponse("There's nothing here. Yet.")
 
 def find_current(request):
     current = datetime.datetime.now()
