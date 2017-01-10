@@ -2,12 +2,10 @@
 
 function search_click() {
 	var form = document.getElementById("filter_form");
+	
 	var res = document.getElementById("result_form");
 	var isOpen = form.classList.contains('slide-in');
     form.setAttribute('class', isOpen ? 'slide-out form_box' : 'slide-in form_box');
-	var outmargin = -107+form.clientHeight;
-	res.style.marginTop = isOpen ? '-107px' : outmargin+'px';
-	
 }
 
 function on_time_change() {
