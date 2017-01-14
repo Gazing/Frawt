@@ -1,4 +1,3 @@
-import pymysql as mysql
 from sqlalchemy import create_engine, exc
 import os
 from .timeslot import TimeSlot as ts
