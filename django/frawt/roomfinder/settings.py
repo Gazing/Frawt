@@ -24,7 +24,6 @@ SECRET_KEY = '!gbw1lv@7w&kw@ydtuhpqy*(up!yuq!h_yn+-6c39ifcc2*#kk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ['35.164.71.130', '127.0.0.1', "www.frawt.me", "frawt.me"]
 
 
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'utscroomfinder',
 ]
 
 MIDDLEWARE = [
