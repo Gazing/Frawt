@@ -14,7 +14,6 @@ Setting up
   - DjangoRestFramework
   - Python 3.5.2 (3.5 only)
   - MySQL
-  
   - Requests if you want to use scheduleparser.py
   
   Use PIP to install everything and it should be good to go
