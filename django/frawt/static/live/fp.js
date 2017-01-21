@@ -9,6 +9,24 @@ function search_click() {
     form.setAttribute('class', isOpen ? 'slide-out form_box' : 'slide-in form_box');
 }
 
+function set_schedule(room) {
+	"use strict";
+	var isExpanded = room.classList.contains("schedule-expanded");
+	if (isExpanded) {
+		room.innerHTML = room.innerHTML.split("<div>")[0];
+		room.classList.remove("schedule-expanded");
+		return;
+	}
+	var roomName = room.innerHTML;
+	$.ajax({
+		url: "/api/rooms/"+roomName.replace(" ", "")+"/schedule/"+$("#day-time").val(),
+		success: function(result) {
+			room.innerHTML += "<div>"+JSON.stringify(result)+"</div>";
+			room.classList.add("schedule-expanded");
+		}
+	});
+}
+
 function on_time_change() {
 	"use strict";
 	var start = $("#start-time").val();
@@ -22,6 +40,11 @@ function on_time_change() {
 			for (var i = 0; i < result.length; i++) {
 				$("#result_body").append("<tr><td>"+result[i]["room_name"]+"</td></tr>");
 			}
+			//$("#result_body tr td").each(function(i, item) {
+			//	item.addEventListener("click", function(e) {
+			//		set_schedule(this);
+			//	});
+			//});
 		},
 		error: function(xhr, textStatus, errorThrown) {
 			clearTable();
@@ -93,6 +116,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+	"use strict";
 	document.getElementById("day-time").addEventListener("click", function() {
 		$(".ui-timepicker-am").remove();
 		document.getElementById("day-time").removeEventListener("click");

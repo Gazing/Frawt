@@ -315,6 +315,10 @@ nav ul li {
 	visibility: hidden;
 	display: none;
 }
+
+.schedule-expanded {
+	
+}
     
 @keyframes slide-in {
     100% { transform: translateY(0%); }
