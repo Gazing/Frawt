@@ -13,7 +13,7 @@ class DatabaseManager():
         password = file.readline().strip()
         host = file.readline().strip()
         dbname = file.readline().strip()
-        self.engine = create_engine(str.format(CONNECTION, uname, password, host, dbname), echo=True)
+        self.engine = create_engine(str.format(CONNECTION, uname, password, host, dbname))
 
     def add_schedule(self, schedule):
         query = "insert into time_slots (room_name, date, start, end) values (%s, %s, %s, %s)"
