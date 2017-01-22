@@ -64,7 +64,8 @@ $(document).ready(function(){
     	'step': 60,
 		'show2400': true,
 		'timeFormat': 'H:i',
-		'disableTextInput': true
+		'disableTextInput': true,
+		'maxTime': '23:00'
 	});
 	$('#start-time').on("changeTime", on_time_change);
 });
@@ -75,7 +76,8 @@ $(document).ready(function(){
     	'step': 60,
 		'show2400': true,
 		'timeFormat': 'H:i',
-		'disableTextInput': true
+		'disableTextInput': true,
+		'maxTime': '23:00'
 	});
 	$('#end-time').on("changeTime", on_time_change);
 });
