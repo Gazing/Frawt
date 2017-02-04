@@ -3,11 +3,13 @@ from django.http import HttpResponse
 from django.template import loader
 import os
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def index(request):
-    about = open("about.md")
+    about = open(os.path.join(BASE_DIR, "about.md"))
     about_list = [text for text in about.read().split("\n")]
-    ver = open("version.md").read()
-    title = open("title.md").read()
+    ver = open(os.path.join(BASE_DIR, "version.md")).read()
+    title = open(os.path.join(BASE_DIR, "title.md")).read()
     template = loader.get_template("utscroomfinder/index.html")
     context = {
         'about_list': about_list,
